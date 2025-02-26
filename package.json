@@ -14,8 +14,15 @@
     "@ant-design/icons": "^5.0.1",
     "@ant-design/plots": "^2.3.3",
     "@ant-design/pro-components": "^2.4.4",
+    "@tabler/icons-react": "^3.30.0",
     "@umijs/max": "^4.4.4",
-    "antd": "^5.4.0"
+    "ag-charts-enterprise": "^11.1.0",
+    "ag-charts-react": "^11.1.0",
+    "ag-grid-community": "^27.3.0",
+    "ag-grid-enterprise": "^27.3.0",
+    "ag-grid-react": "^27.3.0",
+    "antd": "^5.4.0",
+    "react-google-charts": "^5.2.1"
   },
   "devDependencies": {
     "@types/react": "^18.0.33",

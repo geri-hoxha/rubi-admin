@@ -9,6 +9,10 @@ export default defineConfig({
       }
     }
   },
+  locale: {
+    default: 'en-US',
+    baseSeparator: '-',
+  },
   access: {},
   model: {},
   initialState: {},
@@ -18,14 +22,14 @@ export default defineConfig({
   },
   routes: [
     {
-      name: 'DevBetcrypto',
+      name: 'Dashboard',
       path: '/',
       component: './Home',
     },
     {
-      name: ' CRUD 示例',
-      path: '/table',
-      component: './Table',
+      name: 'Players',
+      path: '/players',
+      component: './Players',
     },
   ],
   npmClient: 'npm',
