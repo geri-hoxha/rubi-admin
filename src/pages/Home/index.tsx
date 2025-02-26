@@ -12,6 +12,7 @@ import React, { useState } from 'react';
 import { mapdata } from './data';
 import styles from './styles.less';
 import { topology } from './topology';
+import Card from '@/components/Card';
 
 const { RangePicker } = DatePicker;
 const { Title } = Typography;
@@ -56,7 +57,7 @@ const App: React.FC = () => {
   return (
     <PageContainer
       header={{
-        title: 'Dashboard',
+        title: 'Dashboard', 
       }}
     >
       <div
@@ -87,8 +88,8 @@ const App: React.FC = () => {
             children: (
               <Row gutter={[12, 12]}>
                 <Col span={4}>
-                  <SingleCard />
-                </Col>
+                <SingleCard />
+                 </Col>
                 <Col span={4}>
                   <SingleCard down />
                 </Col>
@@ -219,11 +220,10 @@ const SingleCard = ({ down = false }) => {
   return (
     <div style={{ position: 'relative', cursor: 'pointer' }}>
       <div
-        className={styles.border}
+        className={`${styles.border} card_bg`}
         style={{
           width: '100%',
-          background: 'rgba(108, 122, 137, 0.1)',
-          borderRadius: 6,
+           borderRadius: 6,
           padding: '10px 14px',
         }}
       >
@@ -267,11 +267,10 @@ const DoubleCard = ({ down = false }) => {
   return (
     <div style={{ position: 'relative', cursor: 'pointer' }}>
       <div
-        className={styles.border}
+        className={`${styles.border} card_bg`}
         style={{
           width: '100%',
-          background: 'rgba(108, 122, 137, 0.1)',
-
+ 
           borderRadius: 6,
           padding: '10px 14px',
         }}

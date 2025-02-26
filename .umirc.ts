@@ -5,7 +5,7 @@ export default defineConfig({
     dark: true,
     theme: {
       token: {
-        colorBgBase: '#000',
+        colorBgBase: '#FF0000',
       }
     }
   },

@@ -27,3 +27,7 @@
   --ag-range-selection-background-color-4: rgb(43, 49, 57);
   --ag-range-selection-highlight-color: rgb(90, 91, 94);
 }
+
+.card_bg {
+    background-color: color-mix(in oklab,#fff 10.5%,transparent);
+}
