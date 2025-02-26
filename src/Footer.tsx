@@ -6,7 +6,7 @@ const Footer: React.FC = () => {
   return (
     <footer
       style={{
-        background: 'none',
+        background: 'black',
         position: 'fixed',
         bottom: 0,
         left: 0,

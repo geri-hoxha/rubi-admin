@@ -1,0 +1,29 @@
+.ag-root-wrapper.ag-layout-normal {
+    border-radius: 6px;
+}
+
+
+
+.ag-theme-alpine-dark {
+  --ag-grid-size: 5px;
+  --ag-list-item-height: 20px;
+  --ag-border-color: #31374a;
+
+  --ag-header-foreground-color: #cecece;
+  --ag-header-background-color: transparent;
+  --ag-header-cell-hover-background-color: #0d0e14;
+  --ag-header-cell-moving-background-color: #0d0e14;
+
+  --ag-foreground-color: #dfdfdf;
+  --ag-background-color: #000;
+  --ag-odd-row-background-color:#121315;
+ 
+  --ag-range-selection-border-color: rgb(54, 122, 218);
+  --ag-range-selection-border-style: dashed;
+
+  --ag-range-selection-background-color: rgb(43, 49, 57);
+  --ag-range-selection-background-color-2: rgb(43, 49, 57);
+  --ag-range-selection-background-color-3: rgb(43, 49, 57);
+  --ag-range-selection-background-color-4: rgb(43, 49, 57);
+  --ag-range-selection-highlight-color: rgb(90, 91, 94);
+}

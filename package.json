@@ -18,10 +18,11 @@
     "@umijs/max": "^4.4.4",
     "ag-charts-enterprise": "^11.1.0",
     "ag-charts-react": "^11.1.0",
-    "ag-grid-community": "^27.3.0",
-    "ag-grid-enterprise": "^27.3.0",
-    "ag-grid-react": "^27.3.0",
+    "ag-grid-community": "^27.2.1",
+    "ag-grid-enterprise": "^27.2.1",
+    "ag-grid-react": "^27.2.1",
     "antd": "^5.4.0",
+    "numeral": "^2.0.6",
     "react-google-charts": "^5.2.1"
   },
   "devDependencies": {

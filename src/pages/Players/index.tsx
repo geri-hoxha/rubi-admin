@@ -1,69 +1,66 @@
-import { PageContainer } from '@ant-design/pro-components';
-import { Button, DatePicker } from 'antd';
-import { CurrencyDropdown, UserDropdown } from '../Home';
+import ActionsCellRenderer from '@/components/ActionsCellRenderer';
 import AgGrid from '@/components/AgGrid';
-
+import { PageContainer } from '@ant-design/pro-components';
+import { IconDownload, IconPlus } from '@tabler/icons-react';
+import { Button, DatePicker } from 'antd';
+import { Form } from '../Home';
+import { data } from './data';
+import { columns } from './statics';
 
 const { RangePicker } = DatePicker;
 
 const Players = () => {
+  const addNew = () => {};
   return (
-    <PageContainer title={'Players'}>
+    <PageContainer
+      title={'Players'}
+      extra={
+        <>
+          <Button
+            style={{ background: '#306317' }}
+            type="primary"
+            onClick={addNew}
+          >
+            <IconDownload size={20} />
+            Download Excel
+          </Button>
+          <Button type="primary" onClick={addNew}>
+            <IconPlus size={20} />
+            Add player
+          </Button>
+        </>
+      }
+    >
       <div
         style={{
           display: 'flex',
           alignContent: 'center',
           margin: '14px 0 28px 0',
           gap: 16,
-          background: '#181D1F',
+          background: 'rgba(108, 122, 137, 0.1)',
           padding: '20px 30px',
-          borderRadius: 12,
+          borderRadius: 6,
           justifyContent: 'space-between',
         }}
       >
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 16,
-            flexWrap: 'wrap',
-          }}
-        >
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-            <label style={{ marginLeft: 3 }}>Select range:</label>
-            <RangePicker  />
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-            <label style={{ marginLeft: 3 }}>Select range:</label>
-            <UserDropdown />
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-            <label style={{ marginLeft: 3 }}>Select range:</label>
-            <CurrencyDropdown />
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-            <label style={{ marginLeft: 3 }}>Select range:</label>
-            <UserDropdown />
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-            <label style={{ marginLeft: 3 }}>Select range:</label>
-            <RangePicker />
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-            <label style={{ marginLeft: 3 }}>Select range:</label>
-            <UserDropdown />
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-            <label style={{ marginLeft: 3 }}>Select range:</label>
-            <CurrencyDropdown />
-          </div>
-        </div>
+        <Form />
         <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
           <Button danger>Cancel</Button>
           <Button type="primary">Search</Button>
         </div>
       </div>
-      <AgGrid />
+      <AgGrid
+        height={window.innerHeight - 400}
+        columns={columns}
+        rowData={data}
+        rowHeight={50}
+        headerHeight={50}
+        components={{
+          actionsCellRenderer: ActionsCellRenderer,
+        }}
+        rowModelType="clientSide"
+        columnHoverHighlight
+      />
     </PageContainer>
   );
 };

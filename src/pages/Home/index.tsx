@@ -1,22 +1,13 @@
 import { Area, Column } from '@ant-design/plots';
 import { PageContainer } from '@ant-design/pro-components';
 import {
-  IconCircleArrowDown,
-  IconCircleArrowUp,
+  IconCaretDownFilled,
+  IconCaretUpFilled,
   IconInfoCircle,
 } from '@tabler/icons-react';
 import 'ag-charts-enterprise';
 import { AgCharts } from 'ag-charts-react';
-import {
-  Button,
-  Col,
-  DatePicker,
-  Divider,
-  Row,
-  Select,
-  Tabs,
-  Typography,
-} from 'antd';
+import { Button, Col, DatePicker, Row, Select, Tabs, Typography } from 'antd';
 import React, { useState } from 'react';
 import { mapdata } from './data';
 import styles from './styles.less';
@@ -24,6 +15,42 @@ import { topology } from './topology';
 
 const { RangePicker } = DatePicker;
 const { Title } = Typography;
+
+export const Form = () => {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+        <label style={{ marginLeft: 3 }}>Select range:</label>
+        <RangePicker  style={{ width: 400 }} />
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+        <label style={{ marginLeft: 3 }}>Select range:</label>
+        <UserDropdown />
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+        <label style={{ marginLeft: 3 }}>Select range:</label>
+        <CurrencyDropdown />
+      </div>
+    </div>
+
+    <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+        <label style={{ marginLeft: 3 }}>Select range:</label>
+        <RangePicker style={{ width: 400 }} />
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+        <label style={{ marginLeft: 3 }}>Select range:</label>
+        <UserDropdown />
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+        <label style={{ marginLeft: 3 }}>Select range:</label>
+        <CurrencyDropdown />
+      </div>
+    </div>
+  </div>
+  )
+}
 
 const App: React.FC = () => {
   return (
@@ -38,26 +65,13 @@ const App: React.FC = () => {
           alignContent: 'center',
           margin: '14px 0 28px 0',
           gap: 16,
-          background: '#181D1F',
+          background: 'rgba(108, 122, 137, 0.1)',
           padding: '20px 30px',
-          borderRadius: 12,
+          borderRadius: 6,
           justifyContent: 'space-between',
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-            <label style={{ marginLeft: 3 }}>Select range:</label>
-            <RangePicker style={{ width: 400 }} />
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-            <label style={{ marginLeft: 3 }}>Select range:</label>
-            <UserDropdown />
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-            <label style={{ marginLeft: 3 }}>Select range:</label>
-            <CurrencyDropdown />
-          </div>
-        </div>
+          <Form />
         <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
           <Button danger>Cancel</Button>
           <Button type="primary">Search</Button>
@@ -108,33 +122,41 @@ const App: React.FC = () => {
       <Row gutter={[12, 12]} style={{ margin: '30px 0' }}>
         <Col span={12}>
           <TabsMenu />
-          <br />
+        </Col>
+        <Col span={12}>
           <TabsMenu2 />
-          <br />
-          <Divider />
+        </Col>
 
-          <Row gutter={[12, 12]}>
-            <Col span={8}>
+        <Col span={24}>
+          <Row gutter={[12, 12]} style={{ marginTop: 10 }}>
+            <Col span={6}>
               <DoubleCard />
             </Col>
-            <Col span={8}>
+            <Col span={6}>
               <DoubleCard down />
             </Col>
-            <Col span={8}>
+            <Col span={6}>
               <DoubleCard />
             </Col>
-            <Col span={8}>
+            <Col span={6}>
               <DoubleCard />
             </Col>
-            <Col span={8}>
+            <Col span={6}>
               <DoubleCard down />
             </Col>
-            <Col span={8}>
+            <Col span={6}>
+              <DoubleCard down />
+            </Col>
+            <Col span={6}>
+              <DoubleCard down />
+            </Col>
+            <Col span={6}>
               <DoubleCard down />
             </Col>
           </Row>
         </Col>
-        <Col span={12}>
+
+        <Col span={24}>
           <Tabs
             defaultActiveKey="1"
             items={[
@@ -142,32 +164,40 @@ const App: React.FC = () => {
                 label: `GGR and Deposit`,
                 key: '1',
                 children: (
-                  <>
-                    <Title level={5} style={{ textAlign: 'center' }}>
-                      GGR and Turnover
-                    </Title>
-                    <LineChartParent />
-                    <Title level={5} style={{ textAlign: 'center' }}>
-                      Deposit
-                    </Title>
-                    <LineChartParent2 />
-                  </>
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <div style={{ width: '100%' }}>
+                      <Title level={5} style={{ textAlign: 'center' }}>
+                        GGR and Turnover
+                      </Title>
+                      <LineChartParent />
+                    </div>
+                    <div style={{ width: '100%' }}>
+                      <Title level={5} style={{ textAlign: 'center' }}>
+                        Deposit
+                      </Title>
+                      <LineChartParent2 />
+                    </div>
+                  </div>
                 ),
               },
               {
                 label: `Country`,
                 key: '2',
                 children: (
-                  <>
-                    <Title level={5} style={{ textAlign: 'center' }}>
-                      Registration By Country
-                    </Title>
-                    <WorldMapChart />
-                    <Title level={5} style={{ textAlign: 'center' }}>
-                      Top Registration Countries
-                    </Title>
-                    <DemoColumn />
-                  </>
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <div style={{ width: '70%' }}>
+                      <Title level={5} style={{ textAlign: 'center' }}>
+                        Registration By Country
+                      </Title>
+                      <WorldMapChart />
+                    </div>
+                    <div style={{ width: '30%' }}>
+                      <Title level={5} style={{ textAlign: 'center' }}>
+                        Top Registration Countries
+                      </Title>
+                      <DemoColumn />
+                    </div>
+                  </div>
                 ),
               },
               {
@@ -192,9 +222,7 @@ const SingleCard = ({ down = false }) => {
         className={styles.border}
         style={{
           width: '100%',
-          background:
-            ' linear-gradient(-90deg, rgba(2, 132, 199, 0.1) 0%, rgba(2, 132, 199, 0.1 ) 90%)',
-          border: '1px solid #15325b',
+          background: 'rgba(108, 122, 137, 0.1)',
           borderRadius: 6,
           padding: '10px 14px',
         }}
@@ -210,7 +238,7 @@ const SingleCard = ({ down = false }) => {
             style={{
               display: 'flex',
               alignItems: 'center',
-              marginTop: 16,
+              marginTop: 6,
               gap: 6,
             }}
           >
@@ -224,31 +252,9 @@ const SingleCard = ({ down = false }) => {
               230.00 €
             </span>
             {down ? (
-              <div
-                style={{
-                  border: '1px solid #a61d24',
-                  borderRadius: '10px',
-                  color: '#a61d24',
-                  fontSize: 12,
-                  padding: '0px 3px',
-                  fontWeight: 500,
-                }}
-              >
-                Down
-              </div>
+              <IconCaretDownFilled style={{ color: '#a61d24' }} />
             ) : (
-              <div
-                style={{
-                  border: '1px solid #3c8618',
-                  borderRadius: '10px',
-                  color: '#3c8618',
-                  fontSize: 12,
-                  padding: '0px 7px',
-                  fontWeight: 500,
-                }}
-              >
-                Up
-              </div>
+              <IconCaretUpFilled style={{ color: '#3c8618' }} />
             )}
           </div>
         </div>
@@ -264,55 +270,56 @@ const DoubleCard = ({ down = false }) => {
         className={styles.border}
         style={{
           width: '100%',
-          background:
-            ' linear-gradient(-90deg, rgba(2, 132, 199, 0.1) 0%, rgba(2, 132, 199, 0.1 ) 90%)',
-          border: '1px solid #15325b',
+          background: 'rgba(108, 122, 137, 0.1)',
+
           borderRadius: 6,
           padding: '10px 14px',
         }}
       >
         <div>
-          <span style={{ fontSize: 12, fontWeight: 500 }}>
+          <span style={{ fontSize: 16, fontWeight: 500 }}>
             Providers Profit
           </span>
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              marginTop: 16,
-              gap: 6,
-            }}
-          >
-            <span
-              style={{
-                fontWeight: 600,
-                display: 'block',
-                fontSize: 16,
-              }}
-            >
-              - 23,043.00 €
-            </span>
-            <IconCircleArrowUp size={22} style={{ color: '#3c8618' }} />
-          </div>
 
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              marginTop: 16,
-              gap: 6,
-            }}
-          >
-            <span
+          <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
+            <div
               style={{
-                fontWeight: 600,
-                display: 'block',
-                fontSize: 16,
+                display: 'flex',
+                alignItems: 'center',
+                marginTop: 16,
+                gap: 6,
               }}
             >
-              - 2,230.00 €
-            </span>
-            <IconCircleArrowDown size={22} style={{ color: '#a61d24' }} />
+              <span
+                style={{
+                  fontWeight: 600,
+                  display: 'block',
+                  fontSize: 19,
+                }}
+              >
+                23,043.00 €
+              </span>
+              <IconCaretUpFilled style={{ color: '#3c8618' }} />
+            </div>
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                marginTop: 16,
+                gap: 6,
+              }}
+            >
+              <span
+                style={{
+                  fontWeight: 600,
+                  display: 'block',
+                  fontSize: 19,
+                }}
+              >
+                2,230.00 €
+              </span>
+              <IconCaretDownFilled style={{ color: '#a61d24' }} />
+            </div>
           </div>
         </div>
       </div>
@@ -499,20 +506,20 @@ export const LineChartParent = (props) => {
     xField: (d) => new Date(d.date),
     yField: 'price',
     style: {
-      fill: 'linear-gradient(-90deg, rgba(2, 132, 199, 0.1) 0%, rgba(2, 132, 199, 0.8) 90%)',
+      fill: 'none',
     },
     axis: {
       y: { labelFormatter: '~s' },
     },
     line: {
       style: {
-        stroke: '#0284c7',
-        strokeWidth: 2,
+        stroke: '#1554ad',
+ 
       },
     },
     ...props,
   };
-  return <Area {...config} height={props?.height || 260} />;
+  return <Area   {...config} height={props?.height || 260} />;
 };
 
 export const LineChartParent2 = (props) => {
@@ -526,14 +533,14 @@ export const LineChartParent2 = (props) => {
     xField: (d) => new Date(d.date),
     yField: 'price',
     style: {
-      fill: 'linear-gradient(-90deg, rgba(167, 139, 250, 0.1) 0%, rgba(167, 139, 250, 0.8) 90%)',
+      fill: 'none',
     },
     axis: {
       y: { labelFormatter: '~s' },
     },
     line: {
       style: {
-        stroke: '#a78bfa',
+        stroke: '#854eca',
         strokeWidth: 2,
       },
     },
@@ -572,6 +579,7 @@ const WorldMapChart = () => {
     background: {
       fill: 'transparent',
     },
+    height: 400,
     gradientLegend: {
       enabled: true,
       position: 'right',
@@ -616,9 +624,9 @@ const DemoColumn = () => {
       width: 20,
       fill: ({ type }) => {
         if (type === 'Albania' || type === 'Kosovo') {
-          return '#a78bfa80';
+          return '#a02669';
         }
-        return '#0ea5e980';
+        return '#146262';
       },
     },
     height: 300,
