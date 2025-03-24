@@ -3,11 +3,11 @@ import { defineConfig } from '@umijs/max';
 export default defineConfig({
   antd: {
     dark: true,
-    theme: {
-      token: {
-        colorBgBase: '#FF0000',
-      }
-    }
+    // theme: {
+    //   token: {
+    //     colorBgBase: '#15171C', 
+    //   }
+    // }
   },
   locale: {
     default: 'en-US',
@@ -25,12 +25,20 @@ export default defineConfig({
       name: 'Dashboard',
       path: '/',
       component: './Home',
+      wrappers: ['@/components/ProtectedRoute'], // Use ProtectedRoute wrapper to guard this route
     },
     {
-      name: 'Players',
-      path: '/players',
-      component: './Players',
+      name: 'Users',
+      path: '/users',
+      component: './Users',
+      wrappers: ['@/components/ProtectedRoute'], // Use ProtectedRoute wrapper to guard this route
     },
+    {
+      name: 'Login',
+      path: '/login',
+      component: './Login',
+      layout: false
+    }
   ],
   npmClient: 'npm',
 });

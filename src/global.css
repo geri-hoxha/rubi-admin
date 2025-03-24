@@ -1,8 +1,6 @@
 .ag-root-wrapper.ag-layout-normal {
-    border-radius: 6px;
+  border-radius: 6px;
 }
-
-
 
 .ag-theme-alpine-dark {
   --ag-grid-size: 5px;
@@ -15,9 +13,9 @@
   --ag-header-cell-moving-background-color: #0d0e14;
 
   --ag-foreground-color: #dfdfdf;
-  --ag-background-color: #000;
-  --ag-odd-row-background-color:#121315;
- 
+  --ag-background-color: #141414;
+  --ag-odd-row-background-color: #141414;
+
   --ag-range-selection-border-color: rgb(54, 122, 218);
   --ag-range-selection-border-style: dashed;
 
@@ -29,5 +27,5 @@
 }
 
 .card_bg {
-    background-color: color-mix(in oklab,#fff 10.5%,transparent);
+  background-color: #141414;
 }

@@ -7,7 +7,7 @@ import {
 } from '@tabler/icons-react';
 import 'ag-charts-enterprise';
 import { AgCharts } from 'ag-charts-react';
-import { Button, Col, DatePicker, Row, Select, Tabs, Typography } from 'antd';
+import { Button, Col, DatePicker, Form, Input, Row, Select, Tabs, Typography } from 'antd';
 import React, { useState } from 'react';
 import { mapdata } from './data';
 import styles from './styles.less';
@@ -17,39 +17,48 @@ import Card from '@/components/Card';
 const { RangePicker } = DatePicker;
 const { Title } = Typography;
 
-export const Form = () => {
+export const FormFilter = () => {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-    <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-        <label style={{ marginLeft: 3 }}>Select range:</label>
-        <RangePicker  style={{ width: 400 }} />
-      </div>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-        <label style={{ marginLeft: 3 }}>Select range:</label>
-        <UserDropdown />
-      </div>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-        <label style={{ marginLeft: 3 }}>Select range:</label>
-        <CurrencyDropdown />
-      </div>
-    </div>
+    <Form
+    name="filter"
+    style={{
+      display: 'flex',
+      alignContent: 'center',
+      margin: '14px 0 28px 0',
+      gap: 36,
+      background: '#1F1F1F',
+      padding: '20px 20px 10px 20px',
+      borderRadius: 6,
+    }}
+    layout="vertical"
+    initialValues={{ remember: true }}
+     autoComplete="off"
+  >
+    <Form.Item label="User Type" name="userType">
+      <RangePicker size="large"  />
+    </Form.Item>
+    <Form.Item label="Display Name" name="displayName">
+      <Input size="large" placeholder="Display Name" />
+    </Form.Item>
+    <Form.Item label="Username" name="username">
+      <Input size="large" placeholder="Username" />
+    </Form.Item>
 
-    <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-        <label style={{ marginLeft: 3 }}>Select range:</label>
-        <RangePicker style={{ width: 400 }} />
-      </div>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-        <label style={{ marginLeft: 3 }}>Select range:</label>
-        <UserDropdown />
-      </div>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-        <label style={{ marginLeft: 3 }}>Select range:</label>
-        <CurrencyDropdown />
-      </div>
+    <div
+      style={{
+        marginLeft: 'auto',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: 20,
+      }}
+    >
+      <Button danger>Cancel</Button>
+      <Button type="primary" htmlType="submit">
+        Submit
+      </Button>
     </div>
-  </div>
+  </Form>
   )
 }
 
@@ -60,24 +69,7 @@ const App: React.FC = () => {
         title: 'Dashboard', 
       }}
     >
-      <div
-        style={{
-          display: 'flex',
-          alignContent: 'center',
-          margin: '14px 0 28px 0',
-          gap: 16,
-          background: 'rgba(108, 122, 137, 0.1)',
-          padding: '20px 30px',
-          borderRadius: 6,
-          justifyContent: 'space-between',
-        }}
-      >
-          <Form />
-        <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-          <Button danger>Cancel</Button>
-          <Button type="primary">Search</Button>
-        </div>
-      </div>
+      <FormFilter />
 
       <Tabs
         defaultActiveKey="1"

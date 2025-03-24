@@ -6,12 +6,12 @@ const Footer: React.FC = () => {
   return (
     <footer
       style={{
-        background: 'black',
+        background: '#00000038',
         position: 'fixed',
         bottom: 0,
         left: 0,
         width: '100%',
-        borderTop: '1px solid rgb(31, 31, 31)',
+        borderTop: '1px solid #00000038',
         padding: '13px 0',
         textAlign: 'center'
       }}
