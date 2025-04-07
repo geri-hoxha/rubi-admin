@@ -21,11 +21,8 @@ const ModalBody: React.FC<IProps> = ({ form, id }) => {
       setLoading(true);
 
       const response = await Users.get(id);
-      form.setFieldsValue({
-        userType: 'test',
-        displayName: 'test',
-        username: 'test',
-      });
+      
+      form.setFieldsValue(response?.value);
     } finally {
       setLoading(false);
     }
@@ -41,15 +38,23 @@ const ModalBody: React.FC<IProps> = ({ form, id }) => {
         autoComplete="off"
       >
         <br />
-        <Form.Item<IUserModel> label="User Type" name="userType">
-          <Input size="large" />
-        </Form.Item>
+
         <Form.Item<IUserModel> label="Display Name" name="displayName">
-          <Input size="large" />
+          <Input size="large" placeholder='Display Name' />
         </Form.Item>
         <Form.Item<IUserModel> label="Username" name="username">
-          <Input size="large" />
+          <Input size="large" placeholder='Username' />
         </Form.Item>
+        {id ? null : (
+          <>
+            <Form.Item<IUserModel> label="User Type" name="userType">
+              <Input size="large" placeholder='User Type' />
+            </Form.Item>
+            <Form.Item<IUserModel> label="Password" name="password">
+              <Input size="large" placeholder='Password' />
+            </Form.Item>
+          </>
+        )}
       </Form>
     </Spin>
   );

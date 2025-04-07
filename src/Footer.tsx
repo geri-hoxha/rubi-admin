@@ -1,5 +1,3 @@
-import { DefaultFooter } from '@ant-design/pro-components';
-
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
@@ -13,13 +11,13 @@ const Footer: React.FC = () => {
         width: '100%',
         borderTop: '1px solid #00000038',
         padding: '13px 0',
-        textAlign: 'center'
+        textAlign: 'center',
       }}
- 
-     
     >
-        <span style={{color: 'gray'}}>{`${currentYear} ${'Copyright © 2023 DevBetcrypto. All rights reserved.'}`}</span>
-        </footer>
+      <span
+        style={{ color: 'gray' }}
+      >{`${currentYear} ${'Copyright © 2023 DevBetcrypto. All rights reserved.'}`}</span>
+    </footer>
   );
 };
 

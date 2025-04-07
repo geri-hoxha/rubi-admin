@@ -13,8 +13,8 @@
   --ag-header-cell-moving-background-color: #0d0e14;
 
   --ag-foreground-color: #dfdfdf;
-  --ag-background-color: #141414;
-  --ag-odd-row-background-color: #141414;
+  --ag-background-color: #1A1E26;
+  --ag-odd-row-background-color: #1A1E26;
 
   --ag-range-selection-border-color: rgb(54, 122, 218);
   --ag-range-selection-border-style: dashed;
@@ -27,5 +27,5 @@
 }
 
 .card_bg {
-  background-color: #141414;
+  background-color: #1A1E26;
 }

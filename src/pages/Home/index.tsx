@@ -22,11 +22,14 @@ export const FormFilter = () => {
     <Form
     name="filter"
     style={{
+  
+    
+      background: '#1A1E26',
       display: 'flex',
       alignContent: 'center',
       margin: '14px 0 28px 0',
       gap: 36,
-      background: '#1F1F1F',
+      border: '1px solid #58565280',
       padding: '20px 20px 10px 20px',
       borderRadius: 6,
     }}
@@ -46,15 +49,15 @@ export const FormFilter = () => {
 
     <div
       style={{
-        marginLeft: 'auto',
+ 
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         gap: 20,
       }}
     >
-      <Button danger>Cancel</Button>
-      <Button type="primary" htmlType="submit">
+      <Button size='large' danger>Cancel</Button>
+      <Button size='large' type="primary" htmlType="submit">
         Submit
       </Button>
     </div>
@@ -221,7 +224,7 @@ const SingleCard = ({ down = false }) => {
       >
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-            <span style={{ fontSize: 12, fontWeight: 500 }}>
+            <span style={{ fontSize: 12, fontWeight: 400 }}>
               Total Placing Bets (Turnovers)
             </span>
             <IconInfoCircle size={20} style={{ color: 'gray' }} />
@@ -236,7 +239,7 @@ const SingleCard = ({ down = false }) => {
           >
             <span
               style={{
-                fontWeight: 600,
+                fontWeight: 500,
                 display: 'block',
                 fontSize: 20,
               }}

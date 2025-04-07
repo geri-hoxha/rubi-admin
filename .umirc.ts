@@ -2,12 +2,15 @@ import { defineConfig } from '@umijs/max';
 
 export default defineConfig({
   antd: {
+ 
     dark: true,
-    // theme: {
-    //   token: {
-    //     colorBgBase: '#15171C', 
-    //   }
-    // }
+    compact: true,
+    theme: {
+      token: {
+        colorBgBase: '#121212',
+        colorBgContainer: '#121212',
+      },
+    }
   },
   locale: {
     default: 'en-US',
@@ -37,9 +40,8 @@ export default defineConfig({
       name: 'Login',
       path: '/login',
       component: './Login',
-      layout: false
-    }
+      layout: false,
+    },
   ],
   npmClient: 'npm',
 });
-

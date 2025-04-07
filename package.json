@@ -23,6 +23,7 @@
     "ag-grid-react": "^27.2.1",
     "antd": "^5.4.0",
     "numeral": "^2.0.6",
+    "rc-tween-one": "^3.0.6",
     "react-google-charts": "^5.2.1",
     "umi-request": "^1.4.0"
   },

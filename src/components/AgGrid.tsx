@@ -1,20 +1,13 @@
+import { Result } from '@/services/request';
+import { FilterOutlined, UndoOutlined } from '@ant-design/icons';
 import type { GridApi, GridOptions, GridReadyEvent } from 'ag-grid-community';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine-dark.css';
 import { AgGridReact } from 'ag-grid-react';
-import { useCallback, useEffect, useState } from 'react';
+import { Button, Form, Spin } from 'antd';
+import { ReactNode, useCallback, useEffect, useState } from 'react';
 import CustomDateComponent from './CustomDateComponent';
-import {
-  FilterModel,
-  getSidebar,
-  prepareFilterModelDates,
-  SortModel,
-} from './static';
-
-interface Message {
-  key: string;
-  content: string;
-}
+import { FilterModel, getSidebar, SortModel } from './static';
 
 interface AgGridRequest {
   startRow: number;
@@ -23,39 +16,18 @@ interface AgGridRequest {
   filterModel: { [key: string]: FilterModel };
 }
 
-enum ResultStatus {
-  OK = 'OK',
-  Created = 'Created',
-  Accepted = 'Accepted',
-  NoContent = 'NoContent',
-  BadRequest = 'BadRequest',
-  Unauthorized = 'Unauthorized',
-  Forbidden = 'Forbidden',
-  NotFound = 'NotFound',
-  MethodNotAllowed = 'MethodNotAllowed',
-  InternalServerError = 'InternalServerError',
-  NotImplemented = 'NotImplemented',
-  ServiceUnavailable = 'ServiceUnavailable',
-}
-
-export interface Result<T> {
-  status: ResultStatus;
-  description: string;
-  data: T | null;
-  metadata: Message[];
-  errors: Message[];
-}
-
 export interface IAgGridOptions extends GridOptions {
   apiMethod?: (
-    params: AgGridRequest,
-    id?: string,
-  ) => Promise<Result<any>> | Promise<void>;
+    page: number,
+    pageSize: number,
+    queryParams?: string,
+  ) => Promise<Result<any>>;
   gridRef?:
     | React.RefObject<AgGridReact>
     | React.MutableRefObject<AgGridReact | undefined>
     | any;
   height?: number | string;
+  filterFields?: ReactNode;
 }
 
 const AgGrid: React.FC<IAgGridOptions> = ({
@@ -79,47 +51,44 @@ const AgGrid: React.FC<IAgGridOptions> = ({
   onGridReady,
   height,
   columnDefs,
+  filterFields,
   getRowId = useCallback(({ data }: any) => {
     return data.id;
   }, []),
   ...otherProps
 }) => {
+  const isClientSide = rowModelType === 'clientSide';
+
+  const [filterForm] = Form.useForm();
+
+  const [loading, setLoading] = useState<boolean>(false);
+
   const [gridApi, setGridApi] = useState<GridApi>();
 
   useEffect(() => {
-    if (!gridApi || isClientSide()) return;
-    populateTable();
+    if (!gridApi || isClientSide) return;
+    setDataSource();
   }, [gridApi]);
 
-  const isClientSide = useCallback(() => {
-    return rowModelType === 'clientSide';
-  }, [rowModelType]);
-
-  const getServerSideDatasource = () => {
+  const getServerSideDatasource = (queryParams: string = '') => {
     return {
       getRows: async function (params: any) {
-        const { startRow, endRow, filterModel, sortModel }: AgGridRequest =
-          params.request;
+        if (!apiMethod) return;
 
-        const processedFilterModel = prepareFilterModelDates(filterModel);
+        const { startRow, endRow }: AgGridRequest = params.request;
+
+        // const processedFilterModel = prepareFilterModelDates(filterModel);
 
         try {
-          const response: any = await apiMethod?.({
-            startRow,
-            endRow,
-            filterModel: processedFilterModel,
-            sortModel,
-          });
-          const totalFilteredItems = response.metadata.find(
-            (meta: { key: string; content: string }) =>
-              meta.key === 'TotalFilteredItems',
+          const response: Result<any> = await apiMethod?.(
+            endRow / 100,
+            endRow - startRow,
+            queryParams,
           );
-          const rowCount =
-            Number(totalFilteredItems?.content) || response.data.length;
 
           params.success({
-            rowData: response.data,
-            rowCount: rowCount,
+            rowData: response.value,
+            rowCount: response.filteredRows,
           });
         } catch (error: any) {
           params.success({
@@ -131,45 +100,113 @@ const AgGrid: React.FC<IAgGridOptions> = ({
     };
   };
 
-  const populateTable = () => {
-    if (isClientSide()) return;
-    const datasource = getServerSideDatasource();
+  const filterHandler = async () => {
+    try {
+      setLoading(true);
+      const filterFormValues = filterForm.getFieldsValue();
+
+      const queryParams = Object.keys(filterFormValues)
+        .filter((key) => !!filterFormValues[key])
+        .map((key) => {
+          return `&${key}=${filterFormValues[key]}`;
+        })
+        .join('');
+
+      setDataSource(queryParams);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const filterCancelHandler = async () => {
+    filterForm.resetFields();
+    setDataSource();
+  };
+
+  const setDataSource = (queryParams: string = '') => {
+    const datasource = getServerSideDatasource(queryParams);
+
     gridApi?.setServerSideDatasource(datasource);
   };
 
   return (
-    <div className={` ag-theme-alpine-dark`} style={{ height }}>
-      <AgGridReact
-        ref={gridRef}
-        columnDefs={columnDefs}
-        defaultColDef={{ ...defaultColDef, suppressMenu: true }}
-        className={`ag-theme-alpine-dark`}
-        pagination={rowModelType === 'serverSide' || pagination}
-        rowModelType={rowModelType}
-        serverSideStoreType={serverSideStoreType}
-        maxBlocksInCache={paginationPageSize}
-        onGridReady={
-          onGridReady
-            ? onGridReady
-            : (params: GridReadyEvent) => setGridApi(params.api)
-        }
-        components={{
-          ...components,
-          agDateInput: CustomDateComponent,
-        }}
-        getRowId={getRowId}
-        groupHeaderHeight={37}
-        headerHeight={37}
-        suppressRowClickSelection
-        rowSelection={rowSelection}
-        domLayout={height ? 'normal' : domLayout}
-        animateRows
-        tooltipShowDelay={0}
-        tooltipHideDelay={20000}
-        {...otherProps}
-        sideBar={getSidebar()}
-      />
-    </div>
+    <Spin spinning={loading} tip="Loading...">
+      {
+        <Form
+          form={filterForm}
+          name="filter"
+          style={{
+            display: 'flex',
+            alignContent: 'center',
+            margin: '14px 0 28px 0',
+            gap: 36,
+            background: '#1A1E26',
+            border: '1px solid #58565280',
+            padding: '20px 20px 10px 20px',
+            borderRadius: 6,
+          }}
+          layout="vertical"
+          initialValues={{ remember: true }}
+          autoComplete="off"
+        >
+          {filterFields}
+
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: 20,
+            }}
+          >
+            <Button size="large" danger onClick={filterCancelHandler}>
+              <UndoOutlined /> Reset
+            </Button>
+            <Button
+              size="large"
+              type="primary"
+              htmlType="submit"
+              onClick={filterHandler}
+            >
+              <FilterOutlined /> Filter
+            </Button>
+          </div>
+        </Form>
+      }
+
+      <div className={` ag-theme-alpine-dark`} style={{ height }}>
+        <AgGridReact
+          ref={gridRef}
+          columnDefs={columnDefs}
+          defaultColDef={{ ...defaultColDef, suppressMenu: true }}
+          className={`ag-theme-alpine-dark`}
+          pagination={rowModelType === 'serverSide' || pagination}
+          rowModelType={rowModelType}
+          serverSideStoreType={serverSideStoreType}
+          maxBlocksInCache={paginationPageSize}
+          onGridReady={
+            onGridReady
+              ? onGridReady
+              : (params: GridReadyEvent) => setGridApi(params.api)
+          }
+          components={{
+            ...components,
+            agDateInput: CustomDateComponent,
+          }}
+          getRowId={getRowId}
+          groupHeaderHeight={37}
+          headerHeight={37}
+          suppressRowClickSelection
+          rowSelection={rowSelection}
+          domLayout={height ? 'normal' : domLayout}
+          animateRows
+          tooltipShowDelay={0}
+          tooltipHideDelay={20000}
+          {...otherProps}
+          sideBar={getSidebar()}
+        />
+      </div>
+    </Spin>
   );
 };
 

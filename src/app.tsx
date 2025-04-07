@@ -2,8 +2,12 @@ import { ProLayoutProps } from '@ant-design/pro-components';
 import Footer from './Footer';
 import './global.css';
 
+import { LogoutOutlined } from '@ant-design/icons';
+import { history } from '@umijs/max';
 import 'ag-grid-enterprise';
 import { LicenseManager } from 'ag-grid-enterprise';
+import { Button } from 'antd';
+import { setTokenToLocalStorage } from './services/request';
 
 // ：https://umijs.org/docs/api/runtime-config#getinitialstate
 export async function getInitialState(): Promise<{ name: string }> {
@@ -20,6 +24,22 @@ export const layout = (): ProLayoutProps => {
     menu: {
       locale: true,
     },
+    rightContentRender: () => {
+      return (
+        <Button
+          variant="filled"
+          color="danger"
+          onClick={() => {
+            localStorage.removeItem('token')
+            history.push('./login');
+          }}
+        >
+          <LogoutOutlined />
+          Logout{' '}
+        </Button>
+      );
+    },
+
     contentWidth: 'Fluid',
     layout: 'mix',
     footerRender: () => <Footer />,

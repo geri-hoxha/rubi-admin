@@ -1,6 +1,4 @@
-import request from './request';
-
-type Result<T> = any;
+import request, { Result } from './request';
 
 interface IParamsModel {
   page: number;
@@ -35,7 +33,7 @@ class CrudRequest<T> {
   }
 
   public async delete(id: string) {
-    return request(`/${this.entity}/${id}/delete`, {
+    return request(`/${this.entity}/${id}`, {
       method: 'DELETE',
     });
   }
@@ -43,12 +41,10 @@ class CrudRequest<T> {
   public async getList(
     page: number,
     pageSize: number,
-    queryParams: string[] = [],
+    queryParams?: string,
   ): Promise<Result<T[]>> {
     return request(
-      `/${this.entity}?page=${page}&pageSize=${pageSize}${queryParams
-        .map((param) => param)
-        .join('')}`,
+      `/${this.entity}?page=${page}&perPage=${pageSize}${queryParams}`,
       {
         method: 'GET',
       },

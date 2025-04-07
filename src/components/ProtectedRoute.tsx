@@ -1,5 +1,6 @@
 // components/ProtectedRoute.tsx
-import { Navigate, Outlet } from '@umijs/max';
+import { getTokenFromLocalStorage } from '@/services/request';
+import { history, Navigate, Outlet } from '@umijs/max';
 import React from 'react';
 
 interface ProtectedRouteProps {
@@ -7,16 +8,16 @@ interface ProtectedRouteProps {
 }
 
 export const isAuthenticated = (): boolean => {
-  const user = localStorage.getItem('token');
-  return !user; // Returns true if token exists in localStorage, false otherwise
+  return !!getTokenFromLocalStorage();
 };
 
 const ProtectedRoute: React.FC<ProtectedRouteProps> = () => {
-    if (isAuthenticated()) {
-        return <Outlet />;
-      } else{
-        return <Navigate to="/login" />;
-      }
+
+  if (isAuthenticated()) {
+    return <Outlet />;
+  } else {
+    return <Navigate to="/login" />;
+  }
 };
 
 export default ProtectedRoute;
