@@ -13,7 +13,7 @@ export const isAuthenticated = (): boolean => {
 
 const ProtectedRoute: React.FC<ProtectedRouteProps> = () => {
 
-  if (isAuthenticated()) {
+  if (!isAuthenticated()) {
     return <Outlet />;
   } else {
     return <Navigate to="/login" />;
