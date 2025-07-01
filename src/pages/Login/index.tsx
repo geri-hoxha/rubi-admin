@@ -49,7 +49,7 @@ export default () => {
         <div
           style={{
             width: 460,
-            backgroundColor: '#1A1E26',
+            backgroundColor: '#111928',
             padding: '40px 40px',
             borderRadius: 10,
             marginTop: '-40px',

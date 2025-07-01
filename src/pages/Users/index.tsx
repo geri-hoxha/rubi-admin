@@ -1,6 +1,9 @@
 import AgGrid from '@/components/AgGrid';
+import { toCurrencyStandardFormatCurrency } from '@/components/helpers';
 import Users, { IUserModel } from '@/services/Users';
 import {
+  CheckOutlined,
+  CloseOutlined,
   DeleteOutlined,
   EditOutlined,
   LockOutlined,
@@ -23,6 +26,7 @@ import {
 import { TweenOneGroup } from 'rc-tween-one';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import ModalBody from './Modal';
+import { fakeData } from './static';
 
 export default () => {
   const [openModal, setOpenModal] = useState<boolean>(false);
@@ -90,7 +94,7 @@ export default () => {
               field: 'userId',
               cellStyle: {
                 cursor: 'pointer',
-                color: '#1668dc',
+                color: 'rgb(0 113 255)',
               },
               onCellClicked: ({ value }) => {
                 setOpenModal(true);
@@ -104,6 +108,7 @@ export default () => {
             {
               headerName: 'More actions',
               field: 'more',
+              minWidth: 250,
               cellRenderer: ({ data }: { data: IUserModel }) => {
                 return (
                   <Flex gap={20}>
@@ -121,7 +126,42 @@ export default () => {
               headerName: 'Username',
               field: 'username',
             },
-
+            {
+              headerName: 'Email',
+              field: 'email',
+            },
+            {
+              headerName: 'Active',
+              field: 'isActive',
+              maxWidth: 100,
+              cellRenderer: ({ value }) => {
+                if (value) {
+                  return <CheckOutlined style={{ color: '#49aa19' }} />;
+                }
+                return <CloseOutlined style={{ color: '#dc4446' }} />;
+              },
+            },
+            {
+              headerName: 'Registration Date',
+              field: 'registrationDate',
+            },
+            {
+                            maxWidth: 100,
+              headerName: 'Country',
+              field: 'country',
+              cellRenderer: ({ value }) => {
+                return <img src={`https://flagsapi.com/${value}/shiny/32.png`} />;
+              },
+            },
+            {
+              headerName: 'Account Balance',
+              field: 'accountBalance',
+              cellRenderer: ({ value }) => {
+                return (
+                  <span>{toCurrencyStandardFormatCurrency(value, 'EUR')}</span>
+                );
+              },
+            },
             {
               headerName: 'Actions',
               field: 'actions',
@@ -169,13 +209,14 @@ export default () => {
               },
             },
           ]}
-          apiMethod={Users.getList.bind(Users)}
+          rowData={fakeData}
           rowHeight={50}
           headerHeight={50}
           getRowId={useCallback(({ data }: { data: IUserModel }) => {
             return data.userId;
           }, [])}
           columnHoverHighlight
+          rowModelType="clientSide"
         />
       </PageContainer>
 
@@ -236,11 +277,11 @@ const Roles: React.FC<{
   const forMap = (role: string) => (
     <span key={role} style={{ display: 'inline-block' }}>
       <Tag
-      style={{
-        height: 30,
-        display: 'flex',
-        alignItems: 'center'
-      }}
+        style={{
+          height: 30,
+          display: 'flex',
+          alignItems: 'center',
+        }}
         closable
         onClose={(e) => {
           e.preventDefault();
@@ -332,7 +373,6 @@ const Roles: React.FC<{
               />
             ) : (
               <Tag
-              
                 onClick={showInput}
                 style={{
                   borderStyle: 'dashed',

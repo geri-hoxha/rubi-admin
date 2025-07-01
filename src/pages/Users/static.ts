@@ -1,0 +1,122 @@
+export const fakeData = [
+  {
+    "userId": "U1001",
+    "userType": "player",
+    "displayName": "LuckyLion",
+    "username": "luckylion21",
+    "email": "luckylion21@example.com",
+    "registrationDate": "2024-01-15",
+    "lastLogin": "2025-06-25T20:15:00Z",
+    "accountBalance": 1520.75,
+    "country": "US",
+    "isActive": true
+  },
+  {
+    "userId": "U1002",
+    "userType": "vip",
+    "displayName": "VegasVixen",
+    "username": "vegas_vix",
+    "email": "vegasvix@example.com",
+    "registrationDate": "2023-07-30",
+    "lastLogin": "2025-06-30T03:05:12Z",
+    "accountBalance": 10500.00,
+    "country": "CA",
+    "isActive": true
+  },
+  {
+    "userId": "U1003",
+    "userType": "guest",
+    "displayName": "SpinMaster",
+    "username": "spinmaster",
+    "email": "spinmaster@example.com",
+    "registrationDate": "2025-05-01",
+    "lastLogin": "2025-06-28T18:45:55Z",
+    "accountBalance": 0,
+    "country": "GB",
+    "isActive": false
+  },
+  {
+    "userId": "U1004",
+    "userType": "banned",
+    "displayName": "HighRoller",
+    "username": "highroller99",
+    "email": "highroller99@example.com",
+    "registrationDate": "2022-11-19",
+    "lastLogin": "2024-12-10T11:30:00Z",
+    "accountBalance": 5000,
+    "country": "GB",
+    "isActive": false
+  },
+  {
+    "userId": "U1005",
+    "userType": "player",
+    "displayName": "ChipsChamp",
+    "username": "chips_champ",
+    "email": "chipschamp@example.com",
+    "registrationDate": "2023-02-10",
+    "lastLogin": "2025-06-20T22:10:12Z",
+    "accountBalance": 240.30,
+    "country": "CA",
+    "isActive": true
+  },
+  {
+    "userId": "U1006",
+    "userType": "vip",
+    "displayName": "RouletteQueen",
+    "username": "rouletteq",
+    "email": "roulettequeen@example.com",
+    "registrationDate": "2021-08-08",
+    "lastLogin": "2025-06-29T10:00:00Z",
+    "accountBalance": 8900.40,
+    "country": "US",
+    "isActive": true
+  },
+  {
+    "userId": "U1007",
+    "userType": "guest",
+    "displayName": "CardShark",
+    "username": "cardshark7",
+    "email": "cardshark7@example.com",
+    "registrationDate": "2025-04-15",
+    "lastLogin": "2025-06-27T16:30:45Z",
+    "accountBalance": 0,
+    "country": "AL",
+    "isActive": true
+  },
+  {
+    "userId": "U1008",
+    "userType": "player",
+    "displayName": "JackpotJoe",
+    "username": "jackpotjoe",
+    "email": "jackpotjoe@example.com",
+    "registrationDate": "2024-05-22",
+    "lastLogin": "2025-06-30T19:45:00Z",
+    "accountBalance": 980.00,
+    "country": "AL",
+    "isActive": true
+  },
+  {
+    "userId": "U1009",
+    "userType": "banned",
+    "displayName": "BlackjackBoss",
+    "username": "bj_boss",
+    "email": "bjboss@example.com",
+    "registrationDate": "2023-12-05",
+    "lastLogin": "2025-01-01T00:00:00Z",
+    "accountBalance": 100,
+    "country": "AL",
+    "isActive": false
+  },
+  {
+    "userId": "U1010",
+    "userType": "vip",
+    "displayName": "QueenOfSpades",
+    "username": "qofspades",
+    "email": "qofspades@example.com",
+    "registrationDate": "2022-03-17",
+    "lastLogin": "2025-06-29T21:05:00Z",
+    "accountBalance": 7500.00,
+    "country": "AL",
+    "isActive": true
+  }
+]

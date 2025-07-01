@@ -24,12 +24,11 @@ export const FormFilter = () => {
     style={{
   
     
-      background: '#1A1E26',
+      background: '#272727',
       display: 'flex',
       alignContent: 'center',
       margin: '14px 0 28px 0',
       gap: 36,
-      border: '1px solid #58565280',
       padding: '20px 20px 10px 20px',
       borderRadius: 6,
     }}
@@ -196,11 +195,11 @@ const App: React.FC = () => {
                   </div>
                 ),
               },
-              {
-                label: `Bonus`,
-                key: '3',
-                children: <></>,
-              },
+              // {
+              //   label: `Bonus`,
+              //   key: '3',
+              //   children: <></>,
+              // },
             ]}
           />
         </Col>
@@ -224,7 +223,7 @@ const SingleCard = ({ down = false }) => {
       >
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-            <span style={{ fontSize: 12, fontWeight: 400 }}>
+            <span style={{ fontSize: 12, fontWeight: 400, color:"#cbcbcb" }}>
               Total Placing Bets (Turnovers)
             </span>
             <IconInfoCircle size={20} style={{ color: 'gray' }} />
@@ -271,7 +270,7 @@ const DoubleCard = ({ down = false }) => {
         }}
       >
         <div>
-          <span style={{ fontSize: 16, fontWeight: 500 }}>
+          <span style={{ fontSize: 14, fontWeight: 400,color: '#cbcbcb' }}>
             Providers Profit
           </span>
 

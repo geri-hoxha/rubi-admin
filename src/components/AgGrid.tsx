@@ -140,8 +140,7 @@ const AgGrid: React.FC<IAgGridOptions> = ({
             alignContent: 'center',
             margin: '14px 0 28px 0',
             gap: 36,
-            background: '#1A1E26',
-            border: '1px solid #58565280',
+            background: '#272727',
             padding: '20px 20px 10px 20px',
             borderRadius: 6,
           }}

@@ -5,16 +5,16 @@
 .ag-theme-alpine-dark {
   --ag-grid-size: 5px;
   --ag-list-item-height: 20px;
-  --ag-border-color: #31374a;
+  /* --ag-border-color: transparent; */
 
   --ag-header-foreground-color: #cecece;
   --ag-header-background-color: transparent;
   --ag-header-cell-hover-background-color: #0d0e14;
   --ag-header-cell-moving-background-color: #0d0e14;
-
+ 
   --ag-foreground-color: #dfdfdf;
-  --ag-background-color: #1A1E26;
-  --ag-odd-row-background-color: #1A1E26;
+  --ag-background-color: #272727;
+  --ag-odd-row-background-color: #272727;
 
   --ag-range-selection-border-color: rgb(54, 122, 218);
   --ag-range-selection-border-style: dashed;
@@ -27,5 +27,5 @@
 }
 
 .card_bg {
-  background-color: #1A1E26;
+  background-color: #272727;
 }
