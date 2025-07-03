@@ -14,6 +14,8 @@ export default defineConfig({
   locale: {
     default: 'en-US',
     baseSeparator: '-',
+    antd: true,
+    baseNavigator: true,
   },
   access: {},
   model: {},
@@ -57,7 +59,7 @@ export default defineConfig({
       path: '/transactions',
       wrappers: ['@/components/ProtectedRoute'],
       routes: [
-          {
+        {
           name: 'All Transactions',
           path: '/transactions/all',
           component: './Transactions',
@@ -67,7 +69,7 @@ export default defineConfig({
           path: '/transactions/casino',
           component: './Transactions/Casino',
         },
-            {
+        {
           name: 'Sport Transactions',
           path: '/transactions/sport',
           component: './Transactions/Sport',
@@ -77,19 +79,19 @@ export default defineConfig({
           path: '/transactions/users',
           component: './Transactions/Users',
         },
-             {
+        {
           name: 'Agents Transactions',
           path: '/transactions/agents',
           component: './Transactions/Agents',
         },
       ],
     },
-        {
+    {
       name: 'Reports',
       path: '/reports',
       wrappers: ['@/components/ProtectedRoute'],
       routes: [
-          {
+        {
           name: 'Agents Reports',
           path: '/reports/agents',
           component: './Reports/Agents',
@@ -99,7 +101,6 @@ export default defineConfig({
           path: '/reports/users',
           component: './Reports/Users',
         },
-     
       ],
     },
     {

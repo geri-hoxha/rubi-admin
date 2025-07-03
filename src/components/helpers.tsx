@@ -43,3 +43,8 @@ export const toCurrencyStandardFormatCurrency: (input: number, currency?: string
 
     return `${formattedNumber.toString()}${IsNullOrWhiteSpace(currency) ? '' : ' ' + currency}`;
 };
+
+
+export const isMobile = () => {
+    return typeof window !== 'undefined' && window.innerWidth < 768;
+}

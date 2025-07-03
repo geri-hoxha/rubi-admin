@@ -209,7 +209,6 @@ const Users = () => {
         height={window.innerHeight - 400}
         rowData={rowData}
         columnDefs={columnDefs}
-        defaultColDef={{ resizable: true, flex: 1 }}
         pagination={true}
         paginationPageSize={10}
         rowModelType="clientSide"

@@ -116,7 +116,6 @@ const CasinoTransactions = () => {
 
         rowData={rowData}
         columnDefs={columnDefs}
-        defaultColDef={{ resizable: true }}
         pagination={true}
         paginationPageSize={10}
         rowModelType="clientSide"

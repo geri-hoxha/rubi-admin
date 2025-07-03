@@ -29,3 +29,9 @@
 .card_bg {
   background-color: #272727;
 }
+
+/* mobile sidebar */
+.ant-drawer-content-wrapper,
+.ant-drawer-mask {
+  position: fixed !important;
+}

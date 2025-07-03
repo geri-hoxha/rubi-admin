@@ -282,7 +282,6 @@ const Sport = () => {
         height={window.innerHeight - 400}
         rowData={rowData}
         columnDefs={columnDefs}
-        defaultColDef={{ resizable: true }}
         pagination={true}
         paginationPageSize={10}
         rowModelType="clientSide"

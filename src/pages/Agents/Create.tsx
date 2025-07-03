@@ -77,7 +77,7 @@ const Create = () => {
         scrollToFirstError
       >
         <Row gutter={[24, 24]}>
-          <Col span={8}>
+          <Col span={12} md={8}>
             <Form.Item
               label="Agent Name"
               name="agentName"
@@ -89,7 +89,7 @@ const Create = () => {
               <Input placeholder="Enter agent name" />
             </Form.Item>
           </Col>
-          <Col span={8}>
+          <Col span={12} md={8}>
             <Form.Item
               label="Agent ID"
               name="agentId"
@@ -104,7 +104,7 @@ const Create = () => {
               <Input placeholder="E.g. AGT123" maxLength={10} />
             </Form.Item>
           </Col>
-          <Col span={8}>
+          <Col span={12} md={8}>
             <Form.Item
               label="Email"
               name="email"
@@ -116,7 +116,7 @@ const Create = () => {
               <Input placeholder="agent@example.com" />
             </Form.Item>
           </Col>
-          <Col span={8}>
+          <Col span={12} md={8}>
             <Form.Item
               label="Phone Number"
               name="phone"
@@ -132,7 +132,7 @@ const Create = () => {
             </Form.Item>
           </Col>
 
-          <Col span={8}>
+          <Col span={12} md={8}>
             {/* Password */}
             <Form.Item
               label="Password"
@@ -146,7 +146,7 @@ const Create = () => {
               <Input.Password placeholder="Enter password" />
             </Form.Item>
           </Col>
-          <Col span={8}>
+          <Col span={12} md={8}>
             <Form.Item
               label="Confirm Password"
               name="confirmPassword"
@@ -161,7 +161,7 @@ const Create = () => {
             </Form.Item>
           </Col>
 
-          <Col span={8}>
+          <Col span={12} md={8}>
             {/* Date of Birth */}
             <Form.Item
               label="Date of Birth"
@@ -185,7 +185,7 @@ const Create = () => {
             </Form.Item>
           </Col>
 
-          <Col span={8}>
+          <Col span={12} md={8}>
             {/* Address */}
             <Form.Item
               label="Street Address"
@@ -197,7 +197,7 @@ const Create = () => {
               <Input placeholder="Street address" />
             </Form.Item>
           </Col>
-          <Col span={8}>
+          <Col span={12} md={8}>
             <Form.Item
               label="City"
               name="city"
@@ -206,7 +206,7 @@ const Create = () => {
               <Input placeholder="City" />
             </Form.Item>
           </Col>
-          <Col span={8}>
+          <Col span={12} md={8}>
             <Form.Item
               label="State"
               name="state"
@@ -215,7 +215,7 @@ const Create = () => {
               <Input placeholder="State" />
             </Form.Item>
           </Col>
-          <Col span={8}>
+          <Col span={12} md={8}>
             <Form.Item
               label="Zip Code"
               name="zipCode"
@@ -231,7 +231,7 @@ const Create = () => {
             </Form.Item>
           </Col>
 
-          <Col span={8}>
+          <Col span={12} md={8}>
             {/* ID Proof */}
             <Form.Item
               label="ID Proof Type"
@@ -249,7 +249,7 @@ const Create = () => {
               </Select>
             </Form.Item>
           </Col>
-          <Col span={8}>
+          <Col span={12} md={8}>
             <Form.Item
               label="ID Proof Number"
               name="idProofNumber"
@@ -261,7 +261,7 @@ const Create = () => {
             </Form.Item>
           </Col>
 
-          <Col span={8}>
+          <Col span={12} md={8}>
             {/* Bank Details */}
             <Form.Item
               label="Bank Name"
@@ -271,7 +271,7 @@ const Create = () => {
               <Input placeholder="Bank name" />
             </Form.Item>
           </Col>
-          <Col span={8}>
+          <Col span={12} md={8}>
             <Form.Item
               label="Bank Account Number"
               name="bankAccountNumber"
@@ -289,7 +289,7 @@ const Create = () => {
               <Input placeholder="Account number" />
             </Form.Item>
           </Col>
-          <Col span={8}>
+          <Col span={12} md={8}>
             <Form.Item
               label="IFSC Code"
               name="ifscCode"
@@ -305,7 +305,7 @@ const Create = () => {
             </Form.Item>
           </Col>
 
-          <Col span={8}>
+          <Col span={12} md={8}>
             {/* Joining Date */}
             <Form.Item
               label="Joining Date"
@@ -318,7 +318,7 @@ const Create = () => {
             </Form.Item>
           </Col>
 
-          <Col span={8}>
+          <Col span={12} md={8}>
             {/* Agent Type */}
             <Form.Item
               label="Agent Type"
@@ -335,7 +335,7 @@ const Create = () => {
             </Form.Item>
           </Col>
 
-          <Col span={8}>
+          <Col span={12} md={8}>
             {/* Preferred Contact Method */}
             <Form.Item
               label="Preferred Contact Method"
@@ -355,7 +355,7 @@ const Create = () => {
           </Col>
 
 
-          <Col span={8}>
+          <Col span={12} md={8}>
             {/* Max Allowed Bet Limit */}
             <Form.Item
               label="Max Allowed Bet Limit"
@@ -378,7 +378,7 @@ const Create = () => {
 
          
 
-          <Col span={8}>
+          <Col span={12} md={8}>
             {/* Commission Rate */}
             <Form.Item
               label="Commission Rate (%)"
@@ -404,7 +404,7 @@ const Create = () => {
           </Col>
 
      
-          <Col span={8}>
+          <Col span={12} md={8}>
             {/* Assigned Region */}
             <Form.Item
               label="Assigned Region"
@@ -420,7 +420,7 @@ const Create = () => {
               </Select>
             </Form.Item>
           </Col>
-     <Col span={8}>
+     <Col span={12} md={8}>
             {/* Status */}
             <Form.Item
               label="Status"
@@ -432,7 +432,7 @@ const Create = () => {
             </Form.Item>
           </Col>
 
-          <Col span={8}>
+          <Col span={12} md={8}>
             {/* Is VIP */}
             <Form.Item
               name="isVIP"
@@ -442,7 +442,7 @@ const Create = () => {
               <Checkbox>VIP Agent</Checkbox>
             </Form.Item>
           </Col>
-          <Col span={8}>
+          <Col span={24} md={8}>
             {/* Notes */}
             <Form.Item label="Notes" name="notes">
               <TextArea
@@ -452,7 +452,7 @@ const Create = () => {
             </Form.Item>
           </Col>
 
-           <Col span={16}>
+           <Col span={24} md={16}>
             {/* Profile Picture Upload */}
             <Form.Item
               label="Profile Picture"

@@ -165,6 +165,7 @@ export default () => {
             {
               headerName: 'Actions',
               field: 'actions',
+              minWidth: 200,
               cellRenderer: (params: ICellRendererParams) => {
                 const [loading, setLoading] = useState<boolean>(false);
 

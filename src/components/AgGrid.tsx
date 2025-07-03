@@ -7,6 +7,7 @@ import { AgGridReact } from 'ag-grid-react';
 import { Button, Form, Spin } from 'antd';
 import { ReactNode, useCallback, useEffect, useState } from 'react';
 import CustomDateComponent from './CustomDateComponent';
+import { isMobile } from './helpers';
 import { FilterModel, getSidebar, SortModel } from './static';
 
 interface AgGridRequest {
@@ -139,10 +140,12 @@ const AgGrid: React.FC<IAgGridOptions> = ({
             display: 'flex',
             alignContent: 'center',
             margin: '14px 0 28px 0',
-            gap: 36,
+            gap: isMobile() ? 4 : 36,
             background: '#272727',
             padding: '20px 20px 10px 20px',
             borderRadius: 6,
+
+            flexDirection: isMobile() ? 'column' : 'row',
           }}
           layout="vertical"
           initialValues={{ remember: true }}
@@ -154,7 +157,7 @@ const AgGrid: React.FC<IAgGridOptions> = ({
             style={{
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'center',
+              justifyContent: isMobile() ? 'right': 'center',
               gap: 20,
             }}
           >
@@ -173,7 +176,7 @@ const AgGrid: React.FC<IAgGridOptions> = ({
         </Form>
       }
 
-      <div className={` ag-theme-alpine-dark`} style={{ height }}>
+      <div className={` ag-theme-alpine-dark`} style={{ height, marginBottom: isMobile() ? 20 : 0 }}> 
         <AgGridReact
           ref={gridRef}
           columnDefs={columnDefs}

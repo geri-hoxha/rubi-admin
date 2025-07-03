@@ -1,3 +1,4 @@
+import { isMobile } from '@/components/helpers';
 import { Area, Column } from '@ant-design/plots';
 import { PageContainer } from '@ant-design/pro-components';
 import {
@@ -7,12 +8,20 @@ import {
 } from '@tabler/icons-react';
 import 'ag-charts-enterprise';
 import { AgCharts } from 'ag-charts-react';
-import { Button, Col, DatePicker, Form, Input, Row, Select, Tabs, Typography } from 'antd';
+import {
+  Col,
+  DatePicker,
+  Form,
+  Input,
+  Row,
+  Select,
+  Tabs,
+  Typography,
+} from 'antd';
 import React, { useState } from 'react';
 import { mapdata } from './data';
 import styles from './styles.less';
 import { topology } from './topology';
-import Card from '@/components/Card';
 
 const { RangePicker } = DatePicker;
 const { Title } = Typography;
@@ -20,55 +29,39 @@ const { Title } = Typography;
 export const FormFilter = () => {
   return (
     <Form
-    name="filter"
-    style={{
-  
-    
-      background: '#272727',
-      display: 'flex',
-      alignContent: 'center',
-      margin: '14px 0 28px 0',
-      gap: 36,
-      padding: '20px 20px 10px 20px',
-      borderRadius: 6,
-    }}
-    layout="vertical"
-    initialValues={{ remember: true }}
-     autoComplete="off"
-  >
-    <Form.Item label="User Type" name="userType">
-      <RangePicker size="large"  />
-    </Form.Item>
-    <Form.Item label="Display Name" name="displayName">
-      <Input size="large" placeholder="Display Name" />
-    </Form.Item>
-    <Form.Item label="Username" name="username">
-      <Input size="large" placeholder="Username" />
-    </Form.Item>
-
-    <div
+      name="filter"
       style={{
- 
+        background: '#272727',
         display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: 20,
+        flexDirection: isMobile() ? 'column' : 'row',
+        alignContent: 'center',
+        margin: '14px 0 28px 0',
+        gap: isMobile() ? 4 : 36,
+        padding: '20px 20px 10px 20px',
+        borderRadius: 6,
       }}
+      layout="vertical"
+      initialValues={{ remember: true }}
+      autoComplete="off"
     >
-      <Button size='large' danger>Cancel</Button>
-      <Button size='large' type="primary" htmlType="submit">
-        Submit
-      </Button>
-    </div>
-  </Form>
-  )
-}
+      <Form.Item label="User Type" name="userType">
+        <RangePicker size="large" style={{ width: '100%' }} />
+      </Form.Item>
+      <Form.Item label="Display Name" name="displayName">
+        <Input size="large" placeholder="Display Name" />
+      </Form.Item>
+      <Form.Item label="Username" name="username">
+        <Input size="large" placeholder="Username" />
+      </Form.Item>
+    </Form>
+  );
+};
 
 const App: React.FC = () => {
   return (
     <PageContainer
       header={{
-        title: 'Dashboard', 
+        title: 'Dashboard',
       }}
     >
       <FormFilter />
@@ -81,31 +74,31 @@ const App: React.FC = () => {
             key: '1',
             children: (
               <Row gutter={[12, 12]}>
-                <Col span={4}>
-                <SingleCard />
-                 </Col>
-                <Col span={4}>
+                <Col span={12} md={4}>
+                  <SingleCard />
+                </Col>
+                <Col span={12} md={4}>
                   <SingleCard down />
                 </Col>
-                <Col span={4}>
+                <Col span={12} md={4}>
                   <SingleCard />
                 </Col>
-                <Col span={4}>
+                <Col span={12} md={4}>
                   <SingleCard />
                 </Col>
-                <Col span={4}>
+                <Col span={12} md={4}>
                   <SingleCard down />
                 </Col>
-                <Col span={4}>
+                <Col span={12} md={4}>
                   <SingleCard down />
                 </Col>
-                <Col span={4}>
+                <Col span={12} md={4}>
                   <SingleCard />
                 </Col>
-                <Col span={4}>
+                <Col span={12} md={4}>
                   <SingleCard />
                 </Col>
-                <Col span={4}>
+                <Col span={12} md={4}>
                   <SingleCard down />
                 </Col>
               </Row>
@@ -115,37 +108,37 @@ const App: React.FC = () => {
       />
 
       <Row gutter={[12, 12]} style={{ margin: '30px 0' }}>
-        <Col span={12}>
+        <Col span={24} md={12}>
           <TabsMenu />
         </Col>
-        <Col span={12}>
+        <Col span={24} md={12}>
           <TabsMenu2 />
         </Col>
 
         <Col span={24}>
           <Row gutter={[12, 12]} style={{ marginTop: 10 }}>
-            <Col span={6}>
+            <Col span={24} md={6}>
               <DoubleCard />
             </Col>
-            <Col span={6}>
+            <Col span={24} md={6}>
               <DoubleCard down />
             </Col>
-            <Col span={6}>
+            <Col span={24} md={6}>
               <DoubleCard />
             </Col>
-            <Col span={6}>
+            <Col span={24} md={6}>
               <DoubleCard />
             </Col>
-            <Col span={6}>
+            <Col span={24} md={6}>
               <DoubleCard down />
             </Col>
-            <Col span={6}>
+            <Col span={24} md={6}>
               <DoubleCard down />
             </Col>
-            <Col span={6}>
+            <Col span={24} md={6}>
               <DoubleCard down />
             </Col>
-            <Col span={6}>
+            <Col span={24} md={6}>
               <DoubleCard down />
             </Col>
           </Row>
@@ -159,7 +152,13 @@ const App: React.FC = () => {
                 label: `GGR and Deposit`,
                 key: '1',
                 children: (
-                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <div
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      flexDirection: isMobile() ? 'column' : 'row',
+                    }}
+                  >
                     <div style={{ width: '100%' }}>
                       <Title level={5} style={{ textAlign: 'center' }}>
                         GGR and Turnover
@@ -179,14 +178,20 @@ const App: React.FC = () => {
                 label: `Country`,
                 key: '2',
                 children: (
-                  <div style={{ display: 'flex', alignItems: 'center' }}>
-                    <div style={{ width: '70%' }}>
+                  <div
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      flexDirection: isMobile() ? 'column' : 'row',
+                    }}
+                  >
+                    <div style={{ width: isMobile() ? '100%' : '70%' }}>
                       <Title level={5} style={{ textAlign: 'center' }}>
                         Registration By Country
                       </Title>
                       <WorldMapChart />
                     </div>
-                    <div style={{ width: '30%' }}>
+                    <div style={{ width: isMobile() ? '100%' : '30%' }}>
                       <Title level={5} style={{ textAlign: 'center' }}>
                         Top Registration Countries
                       </Title>
@@ -217,13 +222,13 @@ const SingleCard = ({ down = false }) => {
         className={`${styles.border} card_bg`}
         style={{
           width: '100%',
-           borderRadius: 6,
+          borderRadius: 6,
           padding: '10px 14px',
         }}
       >
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-            <span style={{ fontSize: 12, fontWeight: 400, color:"#cbcbcb" }}>
+            <span style={{ fontSize: 12, fontWeight: 400, color: '#cbcbcb' }}>
               Total Placing Bets (Turnovers)
             </span>
             <IconInfoCircle size={20} style={{ color: 'gray' }} />
@@ -264,13 +269,13 @@ const DoubleCard = ({ down = false }) => {
         className={`${styles.border} card_bg`}
         style={{
           width: '100%',
- 
+
           borderRadius: 6,
           padding: '10px 14px',
         }}
       >
         <div>
-          <span style={{ fontSize: 14, fontWeight: 400,color: '#cbcbcb' }}>
+          <span style={{ fontSize: 14, fontWeight: 400, color: '#cbcbcb' }}>
             Providers Profit
           </span>
 
@@ -452,34 +457,34 @@ const TabContent = ({ prop = '' }) => {
     <Row gutter={[12, 12]}>
       {prop === '2' || prop === '3' ? (
         <>
-          <Col span={8}>
+          <Col span={12} md={8}>
             <SingleCard />
           </Col>
-          <Col span={8}>
+          <Col span={12} md={8}>
             <SingleCard down />
           </Col>
-          <Col span={8}>
+          <Col span={12} md={8}>
             <SingleCard />
           </Col>
         </>
       ) : (
         <>
-          <Col span={8}>
+          <Col span={12} md={8}>
             <SingleCard />
           </Col>
-          <Col span={8}>
+          <Col span={12} md={8}>
             <SingleCard down />
           </Col>
-          <Col span={8}>
+          <Col span={12} md={8}>
             <SingleCard />
           </Col>
-          <Col span={8}>
+          <Col span={12} md={8}>
             <SingleCard />
           </Col>
-          <Col span={8}>
+          <Col span={12} md={8}>
             <SingleCard down />
           </Col>
-          <Col span={8}>
+          <Col span={12} md={8}>
             <SingleCard down />
           </Col>
         </>
@@ -507,12 +512,11 @@ export const LineChartParent = (props) => {
     line: {
       style: {
         stroke: '#1554ad',
- 
       },
     },
     ...props,
   };
-  return <Area   {...config} height={props?.height || 260} />;
+  return <Area {...config} height={props?.height || 260} />;
 };
 
 export const LineChartParent2 = (props) => {

@@ -172,6 +172,7 @@ const AgentGrid = () => {
       {
         headerName: 'Actions',
         field: 'actions',
+        minWidth: 200,
         cellRenderer: (params: ICellRendererParams) => {
           return (
             <Flex gap={10} justify="center" style={{ marginTop: 8 }}>
@@ -199,6 +200,7 @@ const AgentGrid = () => {
             headerName: 'Sub-Agent Name',
             flex: 1,
             cellRenderer: 'agGroupCellRenderer',
+            minWidth: 200,
           },
           { field: 'level', headerName: 'Level', width: 120 },
           {
@@ -218,25 +220,31 @@ const AgentGrid = () => {
             valueFormatter: (params) => `${(params.value * 100).toFixed(1)}%`,
           },
 
-                {
-        headerName: 'Actions',
-        field: 'actions',
-        cellRenderer: (params: ICellRendererParams) => {
-          return (
-            <Flex gap={10} justify="center" style={{ marginTop: 8 }}>
-              <Button color="primary" variant="filled">
-                <EditOutlined /> Edit
-              </Button>
+          {
+            headerName: 'Actions',
+            field: 'actions',
+            minWidth: 200,
+            cellRenderer: (params: ICellRendererParams) => {
+              return (
+                <Flex gap={10} justify="center" style={{ marginTop: 8 }}>
+                  <Button color="primary" variant="filled">
+                    <EditOutlined /> Edit
+                  </Button>
 
-              <Button color="danger" variant="filled">
-                <DeleteOutlined /> Delete
-              </Button>
-            </Flex>
-          );
-        },
-      },
+                  <Button color="danger" variant="filled">
+                    <DeleteOutlined /> Delete
+                  </Button>
+                </Flex>
+              );
+            },
+          },
         ],
-        defaultColDef: { flex: 1, resizable: true, sortable: true },
+        defaultColDef: {
+          flex: 1,
+          resizable: true,
+          sortable: true,
+          minWidth: 100,
+        },
         masterDetail: true, // Enable nested master-detail in detail grid
         detailCellRendererParams: {
           detailGridOptions: {
@@ -261,25 +269,25 @@ const AgentGrid = () => {
                 valueFormatter: (params) =>
                   `${(params.value * 100).toFixed(1)}%`,
               },
-                    {
-        headerName: 'Actions',
-        field: 'actions',
-        cellRenderer: (params: ICellRendererParams) => {
-          return (
-            <Flex gap={10} justify="center" style={{ marginTop: 8 }}>
-              <Button color="primary" variant="filled">
-                <EditOutlined /> Edit
-              </Button>
+              {
+                headerName: 'Actions',
+                field: 'actions',
+                cellRenderer: (params: ICellRendererParams) => {
+                  return (
+                    <Flex gap={10} justify="center" style={{ marginTop: 8 }}>
+                      <Button color="primary" variant="filled">
+                        <EditOutlined /> Edit
+                      </Button>
 
-              <Button color="danger" variant="filled">
-                <DeleteOutlined /> Delete
-              </Button>
-            </Flex>
-          );
-        },
-      },
+                      <Button color="danger" variant="filled">
+                        <DeleteOutlined /> Delete
+                      </Button>
+                    </Flex>
+                  );
+                },
+              },
             ],
-            defaultColDef: { flex: 1, resizable: true, sortable: true },
+            defaultColDef: { flex: 1, resizable: true, sortable: true, minWidth: 150 },
             // For sub-sub-agents, no further nesting, so no masterDetail here (or can add)
             masterDetail: false,
           },
@@ -303,6 +311,7 @@ const AgentGrid = () => {
       sortable: true,
       filter: true,
       resizable: true,
+      minWidth: 150,
     }),
     [],
   );
